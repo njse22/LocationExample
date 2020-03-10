@@ -12,11 +12,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationController.OnLocationReceivedListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private LocationController locationController;
+    private MapController mapController;
     private TextView output;
-    private boolean edificio = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,23 +30,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        locationController = new LocationController(googleMap);
-        locationController.setListener(this);
-        locationController.setInitialPos( manager.getLastKnownLocation(LocationManager.GPS_PROVIDER) );
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0, locationController);
+        mapController = new MapController(googleMap);
+        mapController.setActivity(this);
+        mapController.init();
     }
 
-    @Override
-    public void OnLocationReceived(Location location) {
-        output.setText((edificio?"Usted esta en el A\n":"")+"Acu: "+location.getAccuracy());
-    }
-
-    @Override
-    public void OnEdificioReached() {
-        edificio = true;
+    public TextView getOutput() {
+        return output;
     }
 }
