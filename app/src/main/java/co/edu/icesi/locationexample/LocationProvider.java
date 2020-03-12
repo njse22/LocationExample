@@ -8,10 +8,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.PolyUtil;
 
-public class LocationProvider implements LocationListener {
+public class LocationProvider implements LocationListener{
 
-    OnLocationReceivedListener listener;
-
+    protected OnLocationReceivedListener listener;
 
     @Override
     public void onLocationChanged(Location location) {

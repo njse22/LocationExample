@@ -21,11 +21,13 @@
         android:id="@+id/output"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:text="TextView"
+        android:background="#FFFFFF"
+        android:text="No hay lugares Cercanos "
         map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="1.0"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
 
